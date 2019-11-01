@@ -35,11 +35,11 @@ if __name__ == '__main__':
     
     
     #######
-    #visual_recog.build_recognition_system(num_workers=num_cores)
+    visual_recog.build_recognition_system(num_workers=num_cores)
 
-    #conf, accuracy = visual_recog.evaluate_recognition_system(num_workers=num_cores)
-    #print(conf)
-    #print(np.diag(conf).sum()/conf.sum())
+    conf, accuracy = visual_recog.evaluate_recognition_system(num_workers=num_cores)
+    print(conf)
+    print(np.diag(conf).sum()/conf.sum())
     
     
 
