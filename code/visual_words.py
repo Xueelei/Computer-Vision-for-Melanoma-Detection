@@ -91,14 +91,17 @@ def compute_dictionary(num_workers):
     '''
     
     train_data = np.load("../data/train_data.npz")
+
     # ----- TODO -----
     
     ''' iterate through the paths to read images '''
     i = 0 # index of training image
     alpha = 50 # alpha between 50 and 500
     K = 100 # K between 100 and 200  
-    
+    cnt = 0
     for image_path in train_data.f.files:
+        print(cnt)
+        cnt += 1
         args = i, alpha, image_path 
         compute_dictionary_one_image(args)
         
@@ -135,7 +138,7 @@ def compute_dictionary_one_image(args):
 
     i,alpha,image_path = args
     # ----- TODO -----
-    image = skimage.io.imread('../data/'+image_path)
+    image = skimage.io.imread('../data/ISIC_2019_Training_Input/'+image_path)
     image = image.astype('float')/255
     filter_response = extract_filter_responses(image)
     

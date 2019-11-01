@@ -118,7 +118,7 @@ def get_image_feature(file_path,dictionary,layer_num,K):
     '''
 
     # ----- TODO -----
-    image = skimage.io.imread('../data/'+file_path)
+    image = skimage.io.imread('../data/ISIC_2019_Training_Input/'+file_path)
     image = image.astype('float')/255
     wordmap = visual_words.get_visual_words(image, dictionary)
     feature = get_feature_from_wordmap_SPM(wordmap, layer_num, K)
