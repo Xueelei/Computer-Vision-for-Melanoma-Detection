@@ -31,9 +31,11 @@ def build_recognition_system(num_workers):
     labels = train_data.f.labels
     
     N = len(labels)
+
     dict_size = dictionary.shape[0] 
     features = np.zeros((N, dict_size*((4**SPM_layer_num-1)//3)))
     files = train_data.f.files
+    print(len(files))
     
     i=0
     for image_path in files:
@@ -75,16 +77,17 @@ def evaluate_recognition_system(num_workers=2):
         word_hist = get_image_feature(files[i],dictionary,SPM_layer_num,dictionary.shape[0])
         distance = distance_to_set(word_hist, features)
         label = train_labels[np.argmax(distance)]
+        #print("label:",label)
         
-        
-        conf[test_labels[i]][label]+=1
+        #conf[test_labels[i]][label]+=1
         count+=1
         if test_labels[i]==label:
             accurate+=1
         accuracy = accurate/count
         print("accurate:",test_labels[i],"predict:", label, "accuracy:",accuracy)    
-    conf = np.array(conf)
-    return conf, accuracy
+    #conf = np.array(conf)
+    #return conf, accuracy
+    return None, accuracy
 
 def distance_to_set(word_hist,histograms):
     '''
