@@ -5,6 +5,23 @@ Created on Fri Nov  1 13:38:54 2019
 @author: dell
 """
 
+
+from PIL import Image
+import os, sys
+
+path = "../data/ISIC_2019_Training_Input/"
+dirs = os.listdir( path )
+
+def resize():
+    for item in dirs:
+        if os.path.isfile(path+item):
+            im = Image.open(path+item)
+            f, e = os.path.splitext(path+item)
+            imResize = im.resize((500, 383), Image.ANTIALIAS)
+            imResize.save(f + '.jpg', 'JPEG', quality=90)
+
+resize()
+
 import numpy as np
 
 import csv
@@ -12,7 +29,6 @@ import csv
 # generate train data
 files = []
 labels = []
-
 
 
 with open('../data/ISIC_2019_Training_GroundTruth.csv') as csv_file:
